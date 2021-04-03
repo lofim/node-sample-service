@@ -1,11 +1,17 @@
-## Roadmap
+# Sample node service
 
-- [-] Testing using [jest](https://jestjs.io/docs/getting-started) (drafted)
+This repository intends to host a template of a NodeJS (micro)service.
+It demonstrates various areas often encountered in development of distributes systems (see features section below).
+This service follows the [12factor](https://12factor.net/) methodology.
 
-- [x] Config via environment vars
+## Features
+
+- [-] Unit testing using [jest](https://jestjs.io/docs/getting-started) (drafted)
+
+- [x] Configuration via environment vars
 - [x] Error handling
 - [x] Authentication (middleware JWT, oauth2)
-- [x] Database layer - [knex.js](https://knexjs.org/) (SQL, NoSQL)
+- [x] Database layer - [knex.js](https://knexjs.org/) (SQL, ~~NoSQL~~)
 - [x] Database migrations
 - [x] Payload validation [express-openapi-validator](https://github.com/cdimascio/express-openapi-validator)
 - [x] Service graceful shutdown
@@ -16,14 +22,15 @@
 
 ## Nice to have
 
-- [ ] Eslint config
-- [ ] Prettier config
-- [ ] Use "Problem Details" standard for API error responses (https://tools.ietf.org/html/rfc7807)
-- [ ] Use operations handlers using Openapi-validator
-- [ ] Http client usage (axios)
-- [x] [Expose the Openapi spec](https://github.com/cdimascio/express-openapi-validator#example-express-api-server)
-- [ ] [Circuit Breaker](https://github.com/nodeshift/opossum)
 - [x] Docker-compose + depdendencies for local development
+- [x] Eslint config
+- [x] [Expose the Openapi spec](https://github.com/cdimascio/express-openapi-validator#example-express-api-server)
+- [ ] Make KafkaJS use pino logger instance
+- [ ] Run database migrations on service init
+- [ ] Use operation handlers in Openapi-validator
+- [ ] Use "Problem Details" standard for API error responses (https://tools.ietf.org/html/rfc7807)
+- [ ] Http client usage (axios)
+- [ ] [Circuit Breaker] example (https://github.com/nodeshift/opossum)
 
 ## Tool stack
 

@@ -1,5 +1,3 @@
-'use-strict';
-
 const { Kafka } = require('kafkajs');
 const config = require('../config');
 const logger = require('./logger');

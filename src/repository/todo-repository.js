@@ -1,5 +1,3 @@
-'use-strict';
-
 const db = require('../infra/database');
 
 const todoAttributes = ['id', 'status', 'description'];

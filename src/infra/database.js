@@ -1,5 +1,3 @@
-'use-strict';
-
 const { Knex } = require('knex');
 const config = require('../config');
 
