@@ -1,0 +1,200 @@
+openapi: 3.0.0
+
+info:
+  title: Todo API
+  description: This is a sample openapi spec for TODO api.
+  version: 0.0.1
+
+servers:
+  - url: http://localhost:8080
+    description: Development server
+  - url: http://api.todo.com
+    description: Production server
+
+tags:
+  - name: todo
+    description: Todo items
+
+paths:
+  /v1/todos:
+    post:
+      summary: Create a new todo task.
+      description: Create a new todo task belonging to a user.
+      tags:
+        - todo
+      operationId: createTodo
+      requestBody:
+        description: Payload of new todo task
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+      responses:
+        '201':    # status code
+          description: Todo task created successfuly.
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Todo'
+        '400':    # status code
+          $ref: '#/components/responses/BadRequestError'
+        '401':    # status code
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':    # status code
+          $ref: '#/components/responses/UnexpectedError'
+      security:
+        - bearerAuth: []
+    get:
+      summary: Get a list of todo tasks.
+      description: Fetch all todo tasks belonging to a user.
+      tags:
+        - todo
+      operationId: getTodos
+      responses:
+        '200':    # status code
+          description: Todo tasks fetched successfuly.
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  $ref: '#/components/schemas/TodoWithId'
+        '401':    # status code
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':    # status code
+          $ref: '#/components/responses/UnexpectedError'
+      security:
+        - bearerAuth: []
+  /v1/todos/{id}:
+    get:
+      summary: Get task by id.
+      description: Get a single new todo task using task id
+      tags:
+        - todo
+      operationId: getTodo
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Id of the requested task.
+      responses:
+        '200':    # status code
+          description: Todo task fetched successfuly.
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/TodoWithId'
+        '401':    # status code
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':    # status code
+          $ref: '#/components/responses/NotFoundError'
+        '500':    # status code
+          $ref: '#/components/responses/UnexpectedError'
+      security:
+        - bearerAuth: []
+    put:
+      summary: Update task by id.
+      description: Update a single new todo task using task id
+      tags:
+        - todo
+      operationId: updateTodo
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Id of the requested task.
+      requestBody:
+        description: Payload of new todo task
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+      responses:
+        '200':    # status code
+          description: Todo task updated successfuly.
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Todo'
+        '400':    # status code
+          $ref: '#/components/responses/BadRequestError'
+        '401':    # status code
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':    # status code
+          $ref: '#/components/responses/NotFoundError'
+        '500':    # status code
+          $ref: '#/components/responses/UnexpectedError'
+      security:
+        - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Todo:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - open
+            - closed
+        description:
+          type: string
+          example: 'This is my sample todo item'
+    TodoWithId:
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: integer
+              example: 123
+        - $ref: '#/components/schemas/Todo'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: '0000'
+        status:
+          type: integer
+          example: 500
+        message:
+          type: string
+          example: 'Unexpected error occured!'
+
+  responses:
+    UnexpectedError:
+     description: An unexpected error
+     content:
+       application/json:
+        schema: 
+          $ref: '#/components/schemas/Error'
+    UnauthorizedError:
+     description: An unauthorized error
+     content:
+       application/json:
+        schema: 
+          $ref: '#/components/schemas/Error'
+    BadRequestError:
+     description: An bad request error
+     content:
+       application/json:
+        schema: 
+          $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: NotFound error
+      content:
+        application/json:
+          schema: 
+            $ref: '#/components/schemas/Error'

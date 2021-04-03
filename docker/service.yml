@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+
+  service:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      LOG_JSON: "true"
+      JWKS_URI: http://idp:8080/auth/realms/Sample/protocol/openid-connect/certs
