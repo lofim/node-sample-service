@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "NODE_ENV=test LOGGER_LEVEL=silent jest --testTimeout=10000"
+    "test": "NODE_ENV=test LOGGER_LEVEL=silent jest --testTimeout=10000",
+    "eslint": "eslint --fix src"
   },
   "author": "",
   "license": "ISC",

@@ -1,5 +1,3 @@
-'use strict';
-
 const express = require('express');
 const helmet = require('helmet');
 const compression = require('compression');
@@ -13,10 +11,10 @@ const logger = require('./infra/logger');
 const todoResource = require('./api/todo-resource');
 
 const {
-    baseErrorResolver,
-    authorizationErrorHandler,
-    openapiValidatorErrorHandler,
-    unexpectedErrorResolver
+  baseErrorResolver,
+  authorizationErrorHandler,
+  openapiValidatorErrorHandler,
+  unexpectedErrorResolver,
 } = require('./error/handlers');
 
 // Server config
