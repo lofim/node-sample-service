@@ -11,7 +11,7 @@ This service follows the [12factor](https://12factor.net/) methodology.
 - [x] Configuration via environment vars
 - [x] Error handling
 - [x] Authentication (middleware JWT, oauth2)
-- [x] Database layer - [knex.js](https://knexjs.org/) (SQL, ~~NoSQL~~)
+- [x] Database layer - [knex.js](https://knexjs.org/) (SQL)
 - [x] Database migrations
 - [x] Payload validation [express-openapi-validator](https://github.com/cdimascio/express-openapi-validator)
 - [x] Service graceful shutdown
@@ -25,7 +25,6 @@ This service follows the [12factor](https://12factor.net/) methodology.
 - [x] Docker-compose + depdendencies for local development
 - [x] Eslint config
 - [x] [Expose the Openapi spec](https://github.com/cdimascio/express-openapi-validator#example-express-api-server)
-- [ ] Make KafkaJS use pino logger instance
 - [ ] Run database migrations on service init
 - [ ] Use operation handlers in Openapi-validator
 - [ ] Use "Problem Details" standard for API error responses (https://tools.ietf.org/html/rfc7807)

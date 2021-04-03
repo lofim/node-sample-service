@@ -32,7 +32,7 @@ module.exports = {
     clientId: process.env.KAFKA_CLIENT_ID || 'sample-microservice',
     brokers: process.env.KAFKA_BROKERS || 'localhost:9092',
     topic: process.env.KAFKA_TOPIC || 'default-topic',
-    groupId: process.env.KAFKA_GROUP_ID || 'default-group-id',
+    groupId: process.env.KAFKA_GROUP_ID || 'default-group-id'
   },
   openapi: {
     validator: {
