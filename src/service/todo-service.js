@@ -28,12 +28,13 @@ async function createTodo(todo, userId) {
 
   // Idealy the transactions would happen on the repository level
   // Possibly move the state transition events there instead of service layer
+  let savedTodo;
   await db.transaction(async (trx) => {
-    const savedTodo = await todoRepository.createTodo(newTodo, userId, trx);
+    savedTodo = await todoRepository.createTodo(newTodo, userId, trx);
     await sendMessage('sample-key', savedTodo);
   });
 
-  return newTodo;
+  return savedTodo;
 }
 
 async function updateTodo(id, todoUpdate, userId) {
