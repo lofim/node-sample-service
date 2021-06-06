@@ -8,7 +8,7 @@ const path = require('path');
 
 const config = require('./config');
 const logger = require('./infra/logger');
-const todoResource = require('./api/todo-resource');
+const todoResource = require('./rest/todo-resource');
 
 const {
   baseErrorResolver,
