@@ -1,12 +1,14 @@
-const http = require('http');
+// Instrumentation needs to be registered before everything else
+require('./infra/tracing');
 
+const http = require('http');
 const { createTerminus } = require('@godaddy/terminus');
 const { shutdownConfig } = require('./infra/shutdown');
-const kafka = require('./infra/kafka');
 
 const app = require('./app');
 const config = require('./config');
 const logger = require('./infra/logger');
+const kafka = require('./infra/kafka');
 
 async function initService() {
   // HTTP server

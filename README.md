@@ -18,7 +18,7 @@ This service follows the [12factor](https://12factor.net/) methodology.
 - [x] Service health probe
 - [x] Service readiness probe (unable to test kafka producer & db health)
 - [x] Kafka client (consumer is missing event handling)
-- [ ] [Distributed tracing](https://opentelemetry.io/docs/js/getting_started/nodejs/)
+- [-] [Distributed tracing](https://opentelemetry.io/docs/js/getting_started/nodejs/)
 
 ## Nice to have
 
