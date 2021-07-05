@@ -32,6 +32,7 @@ This service follows the [12factor](https://12factor.net/) methodology.
 - [ ] Use "Problem Details" standard for API error responses (https://tools.ietf.org/html/rfc7807)
 - [ ] Http client usage (axios)
 - [ ] [Circuit Breaker] example (https://github.com/nodeshift/opossum)
+- [ ] Setup prettier
 
 ## Tool stack
 
