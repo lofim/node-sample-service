@@ -1,8 +1,8 @@
-const { NodeTracerProvider } = require("@opentelemetry/node");
+const { NodeTracerProvider } = require('@opentelemetry/node');
 const { registerInstrumentations } = require('@opentelemetry/instrumentation');
 const { PinoInstrumentation } = require('@opentelemetry/instrumentation-pino');
-const { SimpleSpanProcessor, ConsoleSpanExporter } = require("@opentelemetry/tracing");
-const { HttpInstrumentation } = require("@opentelemetry/instrumentation-http");
+const { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/tracing');
+const { HttpInstrumentation } = require('@opentelemetry/instrumentation-http');
 
 const provider = new NodeTracerProvider();
 

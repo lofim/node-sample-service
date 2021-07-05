@@ -25,6 +25,8 @@ This service follows the [12factor](https://12factor.net/) methodology.
 - [x] Docker-compose + depdendencies for local development
 - [x] Eslint config
 - [x] [Expose the Openapi spec](https://github.com/cdimascio/express-openapi-validator#example-express-api-server)
+- [x] Gzip responses (https://www.npmjs.com/package/compression)
+- [ ] Migrate to typescript
 - [ ] Run database migrations on service init
 - [ ] Use operation handlers in Openapi-validator
 - [ ] Use "Problem Details" standard for API error responses (https://tools.ietf.org/html/rfc7807)

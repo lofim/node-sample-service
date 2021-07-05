@@ -1,12 +1,34 @@
 const { Kafka, logLevel } = require('kafkajs');
 const config = require('../config');
-const logger = require('./logger').child({module: 'Kafka'});
+const logger = require('./logger').child({ module: 'Kafka' });
+
+function PinoLogCreator() {
+  return ({ namespace, level, log }) => {
+    const { message, ...extra } = log;
+
+    switch (level) {
+      case logLevel.ERROR:
+      case logLevel.NOTHING:
+        logger.error({ namespace, ...extra }, message);
+        break;
+      case logLevel.WARN:
+        logger.warn({ namespace, ...extra }, message);
+        break;
+      case logLevel.INFO:
+        logger.info({ namespace, ...extra }, message);
+        break;
+      case logLevel.DEBUG:
+      default:
+        logger.debug({ namespace, ...extra }, message);
+    }
+  };
+}
 
 const client = new Kafka({
   clientId: config.kafka.clientId,
   brokers: [config.kafka.brokers],
   logCreator: PinoLogCreator,
-  logLevel: logLevel.INFO
+  logLevel: logLevel.INFO,
 });
 
 const producer = client.producer();
@@ -40,24 +62,6 @@ async function sendMessage(key, payload) {
       { key, value: JSON.stringify(payload) },
     ],
   });
-}
-
-function PinoLogCreator() {
-  return ({ namespace, level, log }) => {
-    const { message, ...extra } = log;
-    
-    switch(level) {
-      case logLevel.ERROR:
-      case logLevel.NOTHING:
-        logger.error({namespace, ...extra}, message);
-      case logLevel.WARN:
-        logger.warn({namespace, ...extra}, message);
-      case logLevel.INFO:
-        logger.info({namespace, ...extra}, message);
-      case logLevel.DEBUG:
-        logger.debug({namespace, ...extra}, message);
-    }
-  };
 }
 
 module.exports = {
