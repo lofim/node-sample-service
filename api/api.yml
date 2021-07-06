@@ -16,6 +16,20 @@ tags:
     description: Todo items
 
 paths:
+  /spec:
+    get:
+      summary: This openapi specification file
+      description: Endpoint returns the openapi specification using by the service
+      tags:
+        - openapi
+      operationId: spec
+      responses:
+        '200':    # status code
+          description: Todo task created successfuly.
+          content:
+            application/yaml:
+              schema: 
+                type: object
   /v1/todos:
     post:
       summary: Create a new todo task.
