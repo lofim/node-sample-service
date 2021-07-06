@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   logger: {
     level: process.env.LOGGER_LEVEL || 'debug',
@@ -26,6 +28,10 @@ module.exports = {
     pool: {
       min: parseInt(process.env.DB_POOL_MIN, 10) || 0,
       max: parseInt(process.env.DB_POOL_MAX, 10) || 7,
+    },
+    migrations: {
+      tableName: 'knex_migrations',
+      directory: path.join(__dirname, '..', 'migrations'),
     },
   },
   kafka: {

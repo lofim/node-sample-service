@@ -9,18 +9,22 @@ const app = require('./app');
 const config = require('./config');
 const logger = require('./infra/logger');
 const kafka = require('./infra/kafka');
+const db = require('./infra/database');
 
 async function initService() {
-  // HTTP server
+  logger.info('Initializing application...');
   const server = http.createServer(app);
 
-  // Connect Kafka client producer & consumer
+  logger.info('Running database migrations...');
+  await db.migrate.up(config.database);
+
+  logger.info('Initializing kafka client...');
   await kafka.init();
 
-  // Graceful shutdown
+  logger.info('Configuring graceful shutdown...');
   createTerminus(server, shutdownConfig);
 
-  // Start server
+  logger.info('Starting http server...');
   server.listen(config.server.port, () => logger.info('Server listening on port: %d', config.server.port));
 }
 
