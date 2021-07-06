@@ -18,7 +18,7 @@ This service follows the [12factor](https://12factor.net/) methodology.
 - [x] Service health probe
 - [x] Service readiness probe (unable to test kafka producer & db health)
 - [x] Kafka client (consumer is missing event handling)
-- [-] [Distributed tracing](https://opentelemetry.io/docs/js/getting_started/nodejs/)
+- [x] [Distributed tracing](https://opentelemetry.io/docs/js/getting_started/nodejs/)
 
 ## Nice to have
 
@@ -26,9 +26,9 @@ This service follows the [12factor](https://12factor.net/) methodology.
 - [x] Eslint config
 - [x] [Expose the Openapi spec](https://github.com/cdimascio/express-openapi-validator#example-express-api-server)
 - [x] Gzip responses (https://www.npmjs.com/package/compression)
-- [ ] Migrate to typescript
 - [x] Run database migrations on service init
 - [ ] Use operation handlers in Openapi-validator
+- [ ] Migrate to typescript
 - [ ] Use "Problem Details" standard for API error responses (https://tools.ietf.org/html/rfc7807)
 - [ ] Http client usage (axios)
 - [ ] [Circuit Breaker] example (https://github.com/nodeshift/opossum)
