@@ -3,6 +3,7 @@ const { registerInstrumentations } = require('@opentelemetry/instrumentation');
 const { PinoInstrumentation } = require('@opentelemetry/instrumentation-pino');
 const { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/tracing');
 const { HttpInstrumentation } = require('@opentelemetry/instrumentation-http');
+const { KafkaJsInstrumentation } = require('opentelemetry-instrumentation-kafkajs');
 
 const provider = new NodeTracerProvider();
 
@@ -15,6 +16,6 @@ registerInstrumentations({
   instrumentations: [
     new HttpInstrumentation(),
     new PinoInstrumentation(),
-    // TODO add kafka instrumentation
+    new KafkaJsInstrumentation(),
   ],
 });
