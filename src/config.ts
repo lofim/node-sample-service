@@ -1,0 +1,51 @@
+import path from 'path';
+
+const config: any = {
+    logger: {
+        level: process.env.LOGGER_LEVEL || 'debug',
+        prettyPrint: !(process.env.LOG_JSON === 'true'),
+    },
+    server: {
+        port: parseInt(process.env.PORT || "8080", 10),
+        shutdownTimeoutMs: process.env.SHUTDOWN_TIMEOUT_MS || 1000,
+        beforeShutdownTimeoutMs: process.env.BEFORE_SHUTDOWN_TIMEOUT_MS || 0,
+    },
+    auth: {
+        jwt: {
+            algorithm: 'RS256',
+            jwksUri: process.env.JWKS_URI || 'http://localhost:8082/auth/realms/Sample/protocol/openid-connect/certs',
+            issuer: process.env.JWT_ISSUER || 'issuer',
+        },
+    },
+    database: {
+        client: process.env.DB_CLIENT || 'pg',
+        connection: {
+            host: process.env.DB_HOST || 'localhost',
+            user: process.env.DB_USER || 'svc',
+            password: process.env.DB_PASSWORD || 'password',
+            database: process.env.DB_DATABASE || 'svc',
+        },
+        pool: {
+            min: parseInt(process.env.DB_POOL_MIN || "0", 10),
+            max: parseInt(process.env.DB_POOL_MAX || "7", 10),
+        },
+        migrations: {
+            tableName: 'knex_migrations',
+            directory: path.join(__dirname, 'infrastructure', 'database', 'migrations'),
+        },
+    },
+    kafka: {
+        clientId: process.env.KAFKA_CLIENT_ID || 'sample-microservice',
+        brokers: process.env.KAFKA_BROKERS || 'localhost:9092',
+        topic: process.env.KAFKA_TOPIC || 'default-topic',
+        groupId: process.env.KAFKA_GROUP_ID || 'default-group-id',
+    },
+    openapi: {
+        validator: {
+            apiSpec: './api/api.yml',
+            validateResponses: true,
+        },
+    },
+};
+
+export default config;
